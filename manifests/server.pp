@@ -48,6 +48,9 @@ class postgresql::server (
 
   #Deprecated
   $version                    = undef,
+
+  # adding in some convenience for create dbs from hiera
+  $dbs                        = {}
 ) inherits postgresql::params {
   $pg = 'postgresql::server'
 
@@ -67,5 +70,8 @@ class postgresql::server (
   class { "${pg}::config": }->
   class { "${pg}::service": }->
   class { "${pg}::passwd": }->
+  class { "${pg}::postconfig": }->
   anchor { "${pg}::end": }
+
+
 }
