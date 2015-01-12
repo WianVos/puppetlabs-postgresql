@@ -50,7 +50,8 @@ class postgresql::server (
   $version                    = undef,
 
   # adding in some convenience for create dbs from hiera
-  $dbs                        = {}
+  $dbs                        = {},
+  $pg_hba_rules               = {}
 ) inherits postgresql::params {
   $pg = 'postgresql::server'
 
