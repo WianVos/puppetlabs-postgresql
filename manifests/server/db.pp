@@ -13,6 +13,8 @@ define postgresql::server::db (
   $owner      = undef
 ) {
 
+  $password_hash = postgresql_password($user, $password)
+
   if ! defined(Postgresql::Server::Database[$dbname]) {
     postgresql::server::database { $dbname:
       encoding   => $encoding,
@@ -26,7 +28,7 @@ define postgresql::server::db (
 
   if ! defined(Postgresql::Server::Role[$user]) {
     postgresql::server::role { $user:
-      password_hash => $password,
+      password_hash => $password_hash,
     }
   }
 
