@@ -64,7 +64,7 @@ class postgresql::server (
   # Reload has its own ordering, specified by other defines
   class { "${pg}::reload": require => Class["${pg}::install"] }
 
-  class { "${pg::postconfig}": }
+  class { "${pg}::postconfig": }
 
   anchor { "${pg}::start": }->
   class { "${pg}::install": }->
